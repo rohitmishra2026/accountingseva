@@ -1,5 +1,10 @@
 [build]
   command = "npm run build"
 
+# Next.js intentionally embeds these public settings in browser bundles.
+# Keep scanning enabled for all server credentials and other secrets.
+[build.environment]
+  SECRETS_SCAN_OMIT_KEYS = "NEXT_PUBLIC_SITE_URL,NEXT_PUBLIC_SUPABASE_URL,NEXT_PUBLIC_SUPABASE_ANON_KEY"
+
 [functions."daily-sync"]
   schedule = "30 2 * * *"
