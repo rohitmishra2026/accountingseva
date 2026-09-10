@@ -34,7 +34,7 @@ export function ServicesImpact() {
               Our Practice
             </p>
             <h1 className="text-3xl font-semibold tracking-tight text-navy-900 sm:text-4xl">
-              Complete Accounting, Tax Compliance, Tax Litigation and Advisory
+              Complete Accounting, Tax Compliance, Tax Litigation and Advisory.
             </h1>
             <p className="mt-4 text-lg text-navy-600">
               Every engagement is founder led, backed by 15+ years of
