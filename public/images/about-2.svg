@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#12294d"/>
+      <stop offset="100%" stop-color="#081524"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="600" fill="url(#g)"/>
+  <rect x="24" y="24" width="752" height="552" rx="16" fill="none" stroke="#ffffff" stroke-opacity="0.18" stroke-width="2" stroke-dasharray="10 8"/>
+  <g fill="none" stroke="#ffffff" stroke-opacity="0.55" stroke-width="10" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M400 330 C400 290 400 265 405 240"/>
+    <path d="M400 330 C385 325 377 315 378 302"/>
+  </g>
+  <path d="M405 240 C415 205 442 187 470 182 C466 214 448 236 405 240 Z" fill="#ffffff" fill-opacity="0.55"/>
+  <path d="M401 263 C383 237 357 228 334 232 C343 259 366 272 401 263 Z" fill="#ffffff" fill-opacity="0.55"/>
+  <text x="400" y="420" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="30" fill="#ffffff" fill-opacity="0.85">Firm photo 2</text>
+  <text x="400" y="458" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="17" fill="#ffffff" fill-opacity="0.45">Replace public/images/about-2.svg with a real photo</text>
+</svg>

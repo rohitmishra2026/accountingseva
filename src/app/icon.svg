@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="AccountingSeva">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0b84f0"/>
+      <stop offset="100%" stop-color="#0169d6"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="14" fill="url(#bg)"/>
+  <!-- Leaf sprout mark, echoing the AccountingSeva logo -->
+  <g fill="none" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round">
+    <!-- stem -->
+    <path d="M32 47 C32 39 32 33 33 28" stroke-width="3.2"/>
+    <!-- little curl at the base of the stem -->
+    <path d="M32 47 C29 46 27.5 44 27.8 41.5" stroke-width="3.2"/>
+  </g>
+  <!-- right leaf -->
+  <path d="M33 28 C35 20 41 16 47 15 C46 22 42 27 33 28 Z" fill="#ffffff"/>
+  <!-- left leaf -->
+  <path d="M32 33 C28 27 22 25 17 26 C19 32 24 35 32 33 Z" fill="#ffffff"/>
+  <!-- leaf veins in brand blue -->
+  <g fill="none" stroke="#0169d6" stroke-width="1.4" stroke-linecap="round">
+    <path d="M35 27 C38 23 42 20 45 18"/>
+    <path d="M30 32 C26 30 23 29 20 28.5"/>
+  </g>
+</svg>

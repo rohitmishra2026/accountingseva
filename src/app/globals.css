@@ -1,0 +1,287 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-inter: "Inter", system-ui, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-white text-navy-900 antialiased;
+}
+
+/* Hero entrance: fade + rise + settle. Applied with inline animation-delay
+   for a staggered opening (logo, tagline, CTAs). */
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+.animate-rise {
+  animation: rise 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* Map coastline draw-in. The path sets pathLength=1 so dasharray/offset of 1
+   equals the full length; .map-in-view triggers the draw. */
+.coast-path {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+}
+.map-in-view .coast-path {
+  animation: draw-coast 2.2s ease-out forwards;
+}
+@keyframes draw-coast {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+.map-fill,
+.map-marker {
+  opacity: 0;
+  transition: opacity 0.8s ease-out;
+}
+.map-in-view .map-fill {
+  opacity: 1;
+  transition-delay: 1.2s;
+}
+.map-in-view .map-marker {
+  opacity: 1;
+  transition-delay: 1.6s;
+}
+@keyframes pulse-ring {
+  0% {
+    transform: scale(0.5);
+    opacity: 0.8;
+  }
+  80%,
+  100% {
+    transform: scale(1.8);
+    opacity: 0;
+  }
+}
+.marker-pulse {
+  transform-origin: center;
+  transform-box: fill-box;
+  animation: pulse-ring 2.4s cubic-bezier(0.2, 0.6, 0.4, 1) infinite;
+}
+
+/* ---- Litigation section ----
+   All entrance transitions below sit on elements with no hover states, so
+   delayed transitions are safe (the Reveal settled-delay workaround is not
+   needed here). Everything plays once and settles; only the orbs loop. */
+.lit-row {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  transition-delay: var(--row-delay, 0ms);
+}
+.lit-in-view .lit-row {
+  opacity: 1;
+  transform: none;
+}
+
+.check-path {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+}
+.lit-in-view .check-path {
+  animation: draw-check 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation-delay: var(--check-delay, 0ms);
+}
+@keyframes draw-check {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+.check-ring {
+  transition: border-color 0.6s ease-out;
+  transition-delay: var(--check-delay, 0ms);
+}
+.lit-in-view .check-ring {
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+/* The arc sweeps on the same 1800ms / ease-out-cubic pair as CountUp's JS
+   easing, and stops at three quarters: an open arc reads as ongoing work. */
+.monument-arc {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+}
+.lit-monument-in .monument-arc {
+  animation: sweep-arc 1.8s cubic-bezier(0.33, 1, 0.68, 1) forwards;
+}
+@keyframes sweep-arc {
+  to {
+    stroke-dashoffset: 0.25;
+  }
+}
+
+.monument-fact {
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+  transition-delay: var(--fact-delay, 300ms);
+}
+.lit-monument-in .monument-fact {
+  opacity: 1;
+  transform: none;
+}
+
+@keyframes orb-drift {
+  from {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  to {
+    transform: translate3d(-26px, 20px, 0) scale(1.07);
+  }
+}
+.orb-drift {
+  animation: orb-drift 22s ease-in-out infinite alternate;
+}
+.orb-drift-2 {
+  animation: orb-drift 28s ease-in-out infinite alternate-reverse;
+}
+
+/* ---- Client portal ----
+   Panels rise in as the view mounts, so switching between Standard and
+   Detailed feels composed rather than abrupt. */
+@keyframes panel-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.animate-panel {
+  animation: panel-in 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+/* Stagger the first few panels; later ones share the last delay. */
+.animate-panel:nth-child(1) { animation-delay: 0ms; }
+.animate-panel:nth-child(2) { animation-delay: 60ms; }
+.animate-panel:nth-child(3) { animation-delay: 120ms; }
+.animate-panel:nth-child(4) { animation-delay: 180ms; }
+.animate-panel:nth-child(n + 5) { animation-delay: 240ms; }
+
+/* Respect users who prefer reduced motion: disable smooth scroll + motion. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .animate-fade-up,
+  .animate-rise,
+  .marker-pulse {
+    animation: none !important;
+  }
+  .coast-path {
+    stroke-dashoffset: 0;
+  }
+  .map-fill,
+  .map-marker {
+    opacity: 1;
+    transition: none;
+  }
+  .lit-row,
+  .monument-fact {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .check-path {
+    stroke-dashoffset: 0;
+    animation: none !important;
+  }
+  .check-ring {
+    border-color: rgba(255, 255, 255, 0.4);
+    transition: none;
+  }
+  .monument-arc {
+    stroke-dashoffset: 0.25;
+    animation: none !important;
+  }
+  .orb-drift,
+  .orb-drift-2,
+  .animate-panel {
+    animation: none !important;
+  }
+}
+
+/* Consistent focus ring for keyboard users across the site + portal. */
+:where(a, button, input, select, [tabindex]):focus-visible {
+  outline: 2px solid theme("colors.navy.700");
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
+   Printing the portfolio report.
+
+   The Standard view IS the client's report, so printing it should produce the
+   document, not a screenshot of an app. Three things have to be corrected:
+
+   1. Browsers strip background colours by default. The navy stat rail and the
+      navy table headers are the design; without print-color-adjust they come
+      out as white boxes with white text in them, i.e. blank.
+   2. The wide charts and tables live in overflow-x-auto scrollers. On paper
+      there is nothing to scroll, so the overflow has to become visible or the
+      right-hand columns are simply cut off.
+   3. The app chrome - top bar, view toggle, session countdown - is not part of
+      the report and should not appear on it.
+   ───────────────────────────────────────────────────────────────────────── */
+@media print {
+  /* Print the design, not an outline of it. */
+  *,
+  *::before,
+  *::after {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  @page {
+    size: A4;
+    margin: 14mm;
+  }
+
+  html,
+  body {
+    background: #ffffff !important;
+  }
+
+  /* Nothing scrolls on paper: let the full width lay out instead of clipping. */
+  [data-print="unclip"] {
+    overflow: visible !important;
+  }
+  [data-print="unclip"] > * {
+    min-width: 0 !important;
+  }
+
+  [data-print="hide"] {
+    display: none !important;
+  }
+
+  /* Keep a panel, a table row or a category block from splitting across a
+     page break, which is what turns a clean report into a confusing one. */
+  [data-print="keep"] {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+  tr,
+  thead {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+  thead {
+    display: table-header-group;
+  }
+}

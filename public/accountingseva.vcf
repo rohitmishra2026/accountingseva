@@ -1,0 +1,13 @@
+BEGIN:VCARD
+VERSION:3.0
+N:;AccountingSeva;;;
+FN:AccountingSeva
+ORG:AccountingSeva (Professional Advisory)
+TEL;TYPE=WORK,VOICE:+917083669886
+TEL;TYPE=WORK,VOICE:+919209291672
+EMAIL;TYPE=WORK:info@accountingseva.in
+URL:https://accountingseva.in
+ADR;TYPE=WORK:;;Shop No. 41, 2nd Floor, Apana Bazar;Vasco da Gama;Goa;403802;India
+ADR;TYPE=WORK:;;No. 8, 2nd Floor, Sidhi Terraces, Dhayari;Pune;Maharashtra;411041;India
+NOTE:Tax, compliance and portfolio advisory services in Goa and Pune.
+END:VCARD
